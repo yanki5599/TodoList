@@ -49,7 +49,8 @@
             textbox_title.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             textbox_title.HideSelection = true;
             textbox_title.LeadingIcon = null;
-            textbox_title.Location = new Point(42, 128);
+            textbox_title.Location = new Point(37, 96);
+            textbox_title.Margin = new Padding(3, 2, 3, 2);
             textbox_title.MaxLength = 32767;
             textbox_title.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
             textbox_title.Name = "textbox_title";
@@ -61,7 +62,7 @@
             textbox_title.SelectionLength = 0;
             textbox_title.SelectionStart = 0;
             textbox_title.ShortcutsEnabled = true;
-            textbox_title.Size = new Size(312, 48);
+            textbox_title.Size = new Size(273, 48);
             textbox_title.TabIndex = 0;
             textbox_title.TabStop = false;
             textbox_title.TextAlign = HorizontalAlignment.Left;
@@ -73,7 +74,7 @@
             label_title.AutoSize = true;
             label_title.Depth = 0;
             label_title.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            label_title.Location = new Point(42, 94);
+            label_title.Location = new Point(37, 70);
             label_title.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             label_title.Name = "label_title";
             label_title.Size = new Size(87, 19);
@@ -85,7 +86,7 @@
             label_date.AutoSize = true;
             label_date.Depth = 0;
             label_date.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            label_date.Location = new Point(42, 209);
+            label_date.Location = new Point(37, 157);
             label_date.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             label_date.Name = "label_date";
             label_date.Size = new Size(66, 19);
@@ -105,7 +106,8 @@
             hopeDatePicker1.HeaderTextColor = Color.FromArgb(48, 49, 51);
             hopeDatePicker1.HeadLineColor = Color.FromArgb(228, 231, 237);
             hopeDatePicker1.HoverColor = Color.FromArgb(235, 238, 245);
-            hopeDatePicker1.Location = new Point(42, 243);
+            hopeDatePicker1.Location = new Point(37, 182);
+            hopeDatePicker1.Margin = new Padding(3, 2, 3, 2);
             hopeDatePicker1.Name = "hopeDatePicker1";
             hopeDatePicker1.NMColor = Color.FromArgb(192, 196, 204);
             hopeDatePicker1.NMHoverColor = Color.FromArgb(64, 158, 255);
@@ -126,7 +128,7 @@
             // 
             checkbox_isDone.AutoSize = true;
             checkbox_isDone.Depth = 0;
-            checkbox_isDone.Location = new Point(42, 551);
+            checkbox_isDone.Location = new Point(37, 454);
             checkbox_isDone.Margin = new Padding(0);
             checkbox_isDone.MouseLocation = new Point(-1, -1);
             checkbox_isDone.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
@@ -144,10 +146,11 @@
             dataGridView_tasks.AllowUserToAddRows = false;
             dataGridView_tasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_tasks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_tasks.Location = new Point(412, 128);
+            dataGridView_tasks.Location = new Point(360, 96);
+            dataGridView_tasks.Margin = new Padding(3, 2, 3, 2);
             dataGridView_tasks.Name = "dataGridView_tasks";
             dataGridView_tasks.RowHeadersWidth = 51;
-            dataGridView_tasks.Size = new Size(340, 460);
+            dataGridView_tasks.Size = new Size(298, 345);
             dataGridView_tasks.TabIndex = 6;
             dataGridView_tasks.CellContentClick += dataGridView_tasks_CellContentClick;
             // 
@@ -159,12 +162,12 @@
             button_action.HighEmphasis = true;
             button_action.Icon = null;
             button_action.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            button_action.Location = new Point(196, 552);
-            button_action.Margin = new Padding(4, 6, 4, 6);
+            button_action.Location = new Point(202, 458);
+            button_action.Margin = new Padding(4, 4, 4, 4);
             button_action.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             button_action.Name = "button_action";
             button_action.NoAccentTextColor = Color.Empty;
-            button_action.Size = new Size(139, 36);
+            button_action.Size = new Size(85, 36);
             button_action.TabIndex = 7;
             button_action.Text = "ADD|EDIT";
             button_action.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -174,9 +177,9 @@
             // 
             // Todos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(976, 728);
+            ClientSize = new Size(854, 546);
             Controls.Add(button_action);
             Controls.Add(dataGridView_tasks);
             Controls.Add(checkbox_isDone);
@@ -184,7 +187,9 @@
             Controls.Add(label_date);
             Controls.Add(label_title);
             Controls.Add(textbox_title);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Todos";
+            Padding = new Padding(3, 48, 3, 2);
             Text = "Todos";
             ((System.ComponentModel.ISupportInitialize)dataGridView_tasks).EndInit();
             ResumeLayout(false);
