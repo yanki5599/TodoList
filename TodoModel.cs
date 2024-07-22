@@ -11,8 +11,18 @@ namespace TodoList
         [XmlElement("Title")] 
         public string Title { get; set; }
 
-        [XmlIgnore] 
-        public DateOnly Date { get; set; }
+        private DateOnly _date;
+        [XmlElement("Date")] 
+        public DateOnly Date {
+            get { return _date; } 
+            set 
+            {
+                bool success = DateOnly.TryParse(value.ToString(),out DateOnly result);
+                if(success)
+                    _date = result;
+                
+            } 
+        }
 
         [XmlElement("IsDone")]
         public bool IsDone { get; set; }
