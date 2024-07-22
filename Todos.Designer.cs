@@ -39,6 +39,7 @@
             cancelBTN = new ReaLTaiizor.Controls.MaterialButton();
             contextMenuStrip1 = new ContextMenuStrip(components);
             deleteToolStripMenuItem = new ToolStripMenuItem();
+            editToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView_tasks).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -161,7 +162,8 @@
             dataGridView_tasks.RowHeadersWidth = 51;
             dataGridView_tasks.Size = new Size(405, 345);
             dataGridView_tasks.TabIndex = 6;
-            dataGridView_tasks.CellClick += dataGridView_tasks_CellContentClick;
+            dataGridView_tasks.CellClick += dataGridView_tasks_CellClick;
+            dataGridView_tasks.CellEndEdit += dataGridView_tasks_CellEndEdit;
             dataGridView_tasks.CellMouseClick += RightMouseClick;
             // 
             // button_action
@@ -208,9 +210,9 @@
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem, editToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(108, 26);
+            contextMenuStrip1.Size = new Size(108, 48);
             // 
             // deleteToolStripMenuItem
             // 
@@ -218,6 +220,13 @@
             deleteToolStripMenuItem.Size = new Size(107, 22);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += DeleteTodo;
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(107, 22);
+            editToolStripMenuItem.Text = "Edit";
+            editToolStripMenuItem.Click += editToolStripMenuItem_Click;
             // 
             // Todos
             // 
@@ -260,5 +269,6 @@
         private ReaLTaiizor.Controls.MaterialButton cancelBTN;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem deleteToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
     }
 }

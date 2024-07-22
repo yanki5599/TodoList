@@ -7,6 +7,15 @@ namespace TodoList
         Add,
         Edit
     }
+
+    
+    enum ColumnName
+    {
+        ID = 0,
+        Title = 1,
+        Date = 2,
+        Done = 3,
+    }
     internal partial class Todos : MaterialForm
     {
         private List<TodoModel> todos;
@@ -19,6 +28,7 @@ namespace TodoList
             this.repository = repository;
             LoadData();
             SetMode(Mode.Add);
+
         }
         public void LoadData()
         {
@@ -27,12 +37,12 @@ namespace TodoList
         }
         private void populateViewWithTodo(DataGridViewRow row)
         {
-            ID = (int)row.Cells[0].Value;
-            textbox_title.Text = row.Cells[1].Value.ToString();
-            hopeDatePicker1.Date = DateTime.Parse(row.Cells[2].Value.ToString());
-            checkbox_isDone.Checked = (bool)row.Cells[4].Value;
+            ID                      = (int)row.Cells[(int)ColumnName.ID].Value;
+            textbox_title.Text      = row.Cells[(int)ColumnName.Title].Value.ToString();
+            hopeDatePicker1.Date    = DateTime.Parse(row.Cells[(int)ColumnName.Date].Value.ToString());
+            checkbox_isDone.Checked = (bool)row.Cells[(int)ColumnName.Done].Value;
         }
-        private void dataGridView_tasks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView_tasks_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int idx = e.RowIndex;
             if (idx < 0) return;
@@ -76,11 +86,11 @@ namespace TodoList
         private void Add_new_todo()
         {
             string title = textbox_title.Text;
-            string date = hopeDatePicker1.Date.ToShortDateString();
+            var date = hopeDatePicker1.Date;
             if (!string.IsNullOrEmpty(title))
             {
                 TodoModel newTodo = new TodoModel()
-                { Title = title, XmlDate = date, IsDone = checkbox_isDone.Checked };
+                { Title = title, Date = DateOnly.Parse(date.ToShortDateString()), IsDone = checkbox_isDone.Checked };
                 repository.Add(newTodo);
                 MessageBox.Show("New Task added!");
                 ClearForm();
@@ -88,7 +98,7 @@ namespace TodoList
             }
             else
             {
-                MessageBox.Show("Task name cannot be empty.","Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Task name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -107,7 +117,7 @@ namespace TodoList
             if (!string.IsNullOrEmpty(title))
             {
                 TodoModel newTodo = new TodoModel()
-                { Id = ID, Title = title, XmlDate = date, IsDone = checkbox_isDone.Checked };
+                { Id = ID, Title = title, Date = DateOnly.Parse(date), IsDone = checkbox_isDone.Checked };
                 repository.Update(newTodo);
                 MessageBox.Show("Todo task updated!");
                 ClearForm();
@@ -145,6 +155,31 @@ namespace TodoList
         {
             repository.DeleteById(ID);
             LoadData();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView_tasks.ReadOnly = false;
+            foreach (DataGridViewRow row in dataGridView_tasks.Rows)
+            {
+                if (!row.Selected)
+                    row.ReadOnly = true;
+                else
+                {
+                    row.Cells[0].ReadOnly = row.Cells[3].ReadOnly = true;
+                }
+            }
+        }
+
+        private void dataGridView_tasks_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int idInRow = (int)(dataGridView_tasks.Rows[e.RowIndex].Cells[0].Value);
+            var model = ((List<TodoModel>)dataGridView_tasks.DataSource)
+                .Find(model => model.Id == idInRow);
+            if (model == null)
+                throw new Exception("something went teribly wrong!");
+            repository.Update(model);
+            dataGridView_tasks.ReadOnly = true;
         }
     }
 }

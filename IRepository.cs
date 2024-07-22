@@ -1,12 +1,6 @@
 ﻿namespace TodoList
 {
-    enum Column
-    {
-        Title,
-        Date,
-        IsDone
-
-    }
+   
     internal interface IRepository<T>
     {
         T GetById(int id);

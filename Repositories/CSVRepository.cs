@@ -24,7 +24,7 @@ namespace TodoList.Repositories
 
             todo.Id = GenerateId();
 
-            string csvLine = $"{todo.Id},{todo.Title},{todo.XmlDate},{todo.IsDone}";
+            string csvLine = $"{todo.Id},{todo.Title},{todo.Date},{todo.IsDone}";
             File.AppendAllText(PATH, csvLine + Environment.NewLine);
 
             return todo;
@@ -74,7 +74,7 @@ namespace TodoList.Repositories
                 {
                     Id = int.Parse(fields[0]),
                     Title = fields[1],
-                    XmlDate = fields[2],
+                    Date = DateOnly.Parse(fields[2]),
                     IsDone = bool.Parse(fields[3])
                 };
                 todos.Add(todo);
@@ -106,7 +106,7 @@ namespace TodoList.Repositories
                 {
                     Id = int.Parse(fields[0]),
                     Title = fields[1],
-                    XmlDate = fields[2],
+                    Date = DateOnly.Parse(fields[2]),
                     IsDone = bool.Parse(fields[3])
                 };
                 return todo;
@@ -129,7 +129,7 @@ namespace TodoList.Repositories
                 int id = int.Parse(fields[0]);
                 if (id == todo.Id)
                 {
-                    lines[i] = $"{todo.Id},{todo.Title},{todo.XmlDate},{todo.IsDone}";
+                    lines[i] = $"{todo.Id},{todo.Title},{todo.Date},{todo.IsDone}";
                     break;
                 }
             }

@@ -31,7 +31,7 @@ namespace TodoList.Repositories
             todo.Id = lastID + 1;
             XElement newID = new XElement("ID", lastID + 1);
             XElement newTitle = new XElement("Title", todo.Title);
-            XElement newDate = new XElement("Date", todo.XmlDate);
+            XElement newDate = new XElement("Date", todo.Date);
             XElement isDone = new XElement("IsDone", todo.IsDone);
             XElement parent = new XElement("Todo", newID, newTitle, newDate,isDone);
             root.Add(parent);
@@ -59,10 +59,10 @@ namespace TodoList.Repositories
                     {
                         int id = Int32.Parse(tu.Element("ID")?.Value ?? "");
                         string title = tu.Element("Title")?.Value ?? "";
-                        string date = tu.Element("Date")?.Value ?? "";
+                        DateOnly date = DateOnly.Parse(tu.Element("Date")?.Value) ;
                         bool done = bool.Parse(tu.Element("IsDone")?.Value);
                         TodoModel todoModel = new TodoModel() 
-                        { Id = id , Title = title , XmlDate = date , IsDone=done};
+                        { Id = id , Title = title , Date = date , IsDone=done};
                         todoList.Add(todoModel);
                     }
                     return todoList;
@@ -96,7 +96,7 @@ namespace TodoList.Repositories
             var elem = _activeDoc.Root.Elements("Todo")
                  .Single(item => int.Parse(item.Element("ID").Value) == todo.Id);
             elem.Element("Title").Value = todo.Title;
-            elem.Element("Date").Value = todo.XmlDate;
+            elem.Element("Date").Value = todo.Date.ToString();
             elem.Element("IsDone").Value = todo.IsDone.ToString();
             _activeDoc.Save(PATH);
             return todo;
