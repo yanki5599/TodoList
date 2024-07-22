@@ -41,6 +41,7 @@ namespace TodoList
             textbox_title.Text      = row.Cells[(int)ColumnName.Title].Value.ToString();
             hopeDatePicker1.Date    = DateTime.Parse(row.Cells[(int)ColumnName.Date].Value.ToString());
             checkbox_isDone.Checked = (bool)row.Cells[(int)ColumnName.Done].Value;
+
         }
         private void dataGridView_tasks_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -63,7 +64,7 @@ namespace TodoList
                     cancelBTN.Enabled = false;
                     break;
                 case Mode.Edit:
-                    button_action.Text = "Edit";
+                    button_action.Text = "Update";
                     cancelBTN.Text = "Cancel";
                     cancelBTN.Enabled = true;
                     break;
@@ -166,7 +167,7 @@ namespace TodoList
                     row.ReadOnly = true;
                 else
                 {
-                    row.Cells[0].ReadOnly = row.Cells[3].ReadOnly = true;
+                    row.Cells[(int)ColumnName.ID].ReadOnly = true;
                 }
             }
         }
