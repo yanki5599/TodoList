@@ -2,7 +2,7 @@
 
 namespace TodoList.Repositories
 {
-    internal class XMLRepository  : IRepository<TodoModel>
+    internal class XMLRepository :IRepository<TodoModel>
     {
         private const string PATH = ".\\todo.xml";
         private XDocument _activeDoc;
@@ -32,14 +32,14 @@ namespace TodoList.Repositories
             throw new NotImplementedException();
         }
 
-        public TodoModel GetAll()
+        public List<TodoModel> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public TodoModel GetAll(Column column)
+        public List<TodoModel> GetAll(Func<TodoModel, bool> predicate)
         {
-            return  _activeDoc.Root.Elements().Select(item=>)
+            return  _activeDoc.Root.Elements().Select(predicate).ToList();
         }
 
         public TodoModel GetById(int id)

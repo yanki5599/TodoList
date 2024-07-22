@@ -1,4 +1,5 @@
-﻿namespace TodoList.Repositories
+﻿
+namespace TodoList.Repositories
 {
     internal class CSVRepository : IRepository<TodoModel>
     {
@@ -12,12 +13,12 @@
             throw new NotImplementedException();
         }
 
-        public TodoModel GetAll()
+        public List<TodoModel> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public TodoModel GetAll(Column column)
+        public List<TodoModel> GetAll(Func<TodoModel, bool> predicate)
         {
             throw new NotImplementedException();
         }
