@@ -18,12 +18,12 @@ namespace TodoList.Repositories
             throw new NotImplementedException();
         }
 
-        public TodoModel GetAll()
+        public List<TodoModel> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public TodoModel GetAll(Column column)
+        public List<TodoModel> GetAll(Func<TodoModel, bool> predicate)
         {
             throw new NotImplementedException();
         }

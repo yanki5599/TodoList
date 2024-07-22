@@ -13,7 +13,8 @@
         T Update(T todo);
         T Add(T todo);
         void DeleteById(int id);
-        T GetAll();
-        T GetAll(Column column);
+        List<T> GetAll();
+        // get by col and value
+        List<T> GetAll(Func<T, bool> predicate);
     }
 }
