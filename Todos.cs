@@ -129,7 +129,7 @@ namespace TodoList
         }
         private void UpdateCancelButton(object sender, EventArgs e)
         {
-            cancelBTN.Enabled = (!string.IsNullOrEmpty(textbox_title.Text) || hopeDatePicker1.Date != DateTime.Now)
+            cancelBTN.Enabled = (!string.IsNullOrEmpty(textbox_title.Text) || hopeDatePicker1.Date != DateTime.Now);
         }
         private void RightMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
