@@ -193,7 +193,7 @@
             cancelBTN.HighEmphasis = true;
             cancelBTN.Icon = null;
             cancelBTN.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            cancelBTN.Location = new Point(210, 502);
+            cancelBTN.Location = new Point(202, 502);
             cancelBTN.Margin = new Padding(4);
             cancelBTN.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             cancelBTN.Name = "cancelBTN";
@@ -244,7 +244,7 @@
             PerformLayout();
         }
 
-       
+
 
 
 

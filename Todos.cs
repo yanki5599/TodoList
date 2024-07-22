@@ -45,7 +45,6 @@ namespace TodoList
         }
         private void SetMode(Mode newMode)
         {
-
             switch (newMode)
             {
                 case Mode.Add:
@@ -63,7 +62,6 @@ namespace TodoList
         }
         private void button_action_Click(object sender, EventArgs e)
         {
-
             if (mode == Mode.Add)
             {
                 Add_new_todo();
@@ -74,8 +72,6 @@ namespace TodoList
                 Update_todo();
                 SetMode(Mode.Add);
             }
-
-
         }
         private void Add_new_todo()
         {
@@ -133,14 +129,7 @@ namespace TodoList
         }
         private void UpdateCancelButton(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textbox_title.Text) || hopeDatePicker1.Date != DateTime.Now)
-            {
-                cancelBTN.Enabled = true;
-            }
-            else
-            {
-                cancelBTN.Enabled = false;
-            }
+            cancelBTN.Enabled = (!string.IsNullOrEmpty(textbox_title.Text) || hopeDatePicker1.Date != DateTime.Now)
         }
         private void RightMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
