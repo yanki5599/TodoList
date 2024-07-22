@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             textbox_title = new ReaLTaiizor.Controls.MaterialTextBoxEdit();
             label_title = new ReaLTaiizor.Controls.MaterialLabel();
             label_date = new ReaLTaiizor.Controls.MaterialLabel();
@@ -35,7 +36,11 @@
             checkbox_isDone = new ReaLTaiizor.Controls.MaterialCheckBox();
             dataGridView_tasks = new DataGridView();
             button_action = new ReaLTaiizor.Controls.MaterialButton();
+            cancelBTN = new ReaLTaiizor.Controls.MaterialButton();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            deleteToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView_tasks).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // textbox_title
@@ -68,6 +73,7 @@
             textbox_title.TextAlign = HorizontalAlignment.Left;
             textbox_title.TrailingIcon = null;
             textbox_title.UseSystemPasswordChar = false;
+            textbox_title.TextChanged += UpdateCancelButton;
             // 
             // label_title
             // 
@@ -123,6 +129,7 @@
             hopeDatePicker1.TabIndex = 4;
             hopeDatePicker1.Text = "hopeDatePicker1";
             hopeDatePicker1.ValueTextColor = Color.FromArgb(43, 133, 228);
+            hopeDatePicker1.MouseClick += UpdateCancelButton;
             // 
             // checkbox_isDone
             // 
@@ -144,15 +151,18 @@
             // dataGridView_tasks
             // 
             dataGridView_tasks.AllowUserToAddRows = false;
+            dataGridView_tasks.AllowUserToDeleteRows = false;
             dataGridView_tasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_tasks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_tasks.Location = new Point(360, 96);
             dataGridView_tasks.Margin = new Padding(3, 2, 3, 2);
             dataGridView_tasks.Name = "dataGridView_tasks";
+            dataGridView_tasks.ReadOnly = true;
             dataGridView_tasks.RowHeadersWidth = 51;
-            dataGridView_tasks.Size = new Size(298, 345);
+            dataGridView_tasks.Size = new Size(405, 345);
             dataGridView_tasks.TabIndex = 6;
-            dataGridView_tasks.CellContentClick += dataGridView_tasks_CellContentClick;
+            dataGridView_tasks.CellClick += dataGridView_tasks_CellContentClick;
+            dataGridView_tasks.CellMouseClick += RightMouseClick;
             // 
             // button_action
             // 
@@ -163,7 +173,7 @@
             button_action.Icon = null;
             button_action.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
             button_action.Location = new Point(202, 458);
-            button_action.Margin = new Padding(4, 4, 4, 4);
+            button_action.Margin = new Padding(4);
             button_action.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             button_action.Name = "button_action";
             button_action.NoAccentTextColor = Color.Empty;
@@ -175,11 +185,46 @@
             button_action.UseVisualStyleBackColor = true;
             button_action.Click += button_action_Click;
             // 
+            // cancelBTN
+            // 
+            cancelBTN.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            cancelBTN.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            cancelBTN.Depth = 0;
+            cancelBTN.HighEmphasis = true;
+            cancelBTN.Icon = null;
+            cancelBTN.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            cancelBTN.Location = new Point(210, 502);
+            cancelBTN.Margin = new Padding(4);
+            cancelBTN.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            cancelBTN.Name = "cancelBTN";
+            cancelBTN.NoAccentTextColor = Color.Empty;
+            cancelBTN.Size = new Size(133, 36);
+            cancelBTN.TabIndex = 7;
+            cancelBTN.Text = "cancel | clear";
+            cancelBTN.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            cancelBTN.UseAccentColor = false;
+            cancelBTN.UseVisualStyleBackColor = true;
+            cancelBTN.Click += cancelBTN_Click;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(108, 26);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(107, 22);
+            deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += DeleteTodo;
+            // 
             // Todos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(854, 546);
+            Controls.Add(cancelBTN);
             Controls.Add(button_action);
             Controls.Add(dataGridView_tasks);
             Controls.Add(checkbox_isDone);
@@ -188,13 +233,20 @@
             Controls.Add(label_title);
             Controls.Add(textbox_title);
             Margin = new Padding(3, 2, 3, 2);
+            MaximumSize = new Size(854, 546);
+            MinimumSize = new Size(854, 546);
             Name = "Todos";
             Padding = new Padding(3, 48, 3, 2);
             Text = "Todos";
             ((System.ComponentModel.ISupportInitialize)dataGridView_tasks).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
+
+       
+
+
 
         #endregion
 
@@ -205,5 +257,8 @@
         private ReaLTaiizor.Controls.MaterialCheckBox checkbox_isDone;
         private DataGridView dataGridView_tasks;
         private ReaLTaiizor.Controls.MaterialButton button_action;
+        private ReaLTaiizor.Controls.MaterialButton cancelBTN;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

@@ -21,9 +21,13 @@ namespace TodoList
         [XmlIgnore] 
         public DateOnly Date { get; set; }
 
+        [XmlElement("IsDone")]
+        public bool IsDone { get; set; }
         public TodoModel()
         {
-
+            IsDone = false;
         }
+
+
     }
 }

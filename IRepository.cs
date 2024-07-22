@@ -16,5 +16,6 @@
         List<T> GetAll();
         // get by col and value
         List<T> GetAll(Func<T, bool> predicate);
+        int GenerateId(); // add
     }
 }
