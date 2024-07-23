@@ -1,5 +1,8 @@
-﻿using ReaLTaiizor.Forms;
+﻿using ReaLTaiizor.Controls;
+using ReaLTaiizor.Forms;
 using System.Data;
+using System.Dynamic;
+using System.Reflection;
 namespace TodoList
 {
     enum Mode
@@ -31,6 +34,11 @@ namespace TodoList
             textbox_title.Text = row.Cells[1].Value.ToString();
             hopeDatePicker1.Date = DateTime.Parse(row.Cells[2].Value.ToString());
             checkbox_isDone.Checked = (bool)row.Cells[4].Value;
+
+            // code to access private method and invoke the claculate rect in order to show curr day rect
+            Type type = typeof(HopeDatePicker);
+            var method = type.GetMethod("CalculateRectangles", BindingFlags.NonPublic | BindingFlags.Instance);
+            method.Invoke(hopeDatePicker1, null);
         }
         private void dataGridView_tasks_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
